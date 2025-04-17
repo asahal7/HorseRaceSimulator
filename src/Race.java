@@ -1,5 +1,4 @@
 import java.util.concurrent.TimeUnit;
-import java.lang.Math;
 
 /**
  * A three-horse race, each horse running in its own lane
@@ -92,6 +91,22 @@ public class Race
             try{ 
                 TimeUnit.MILLISECONDS.sleep(100);
             }catch(Exception e){}
+        }
+        Horse winner = null;
+        int maxDistance = 0;
+
+        Horse[] horses = {lane1Horse, lane2Horse, lane3Horse};
+        for (Horse horse : horses) {
+            if (!horse.hasFallen() && horse.getDistanceTravelled() > maxDistance) {
+                maxDistance = horse.getDistanceTravelled();
+                winner = horse;
+            }
+        }   
+
+        if (winner != null) {
+            System.out.println("The winner is " + winner.getName() + " with a distance of " + maxDistance + "m!");
+        } else {
+            System.out.println("No winner in this race! All the horses have fallen.");
         }
     }
     
