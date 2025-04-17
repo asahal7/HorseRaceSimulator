@@ -32,58 +32,91 @@ public class Horse
 
        
     }
-    
-    
-    
     //Other methods of class Horse
+
+    /**
+     * Sets the horse as fallen
+     */
     public void fall()
     {
         this.hasFallen = true;
     }
-    
+    /**
+     * Returns the horse's confidence rating which is between 0 and 1
+     * @return The confidence rating of the horse
+     */
     public double getConfidence()
     {
-        
+        return this.confidence;
     }
-    
+    /**
+     * Returns the distance the horse has travelled in the race
+     * @return The distance travelled by the horse
+     */
     public int getDistanceTravelled()
     {
-        
+        return this.distanceTravelled;
     }
-    
+    /**
+     * Returns the name of the horse
+     * @return The name of the horse
+     */
     public String getName()
     {
-        
+        return this.name;
     }
-    
+    /**
+     * Returns the character used to represent the horse
+     * @return The symbol of the horse
+     */
     public char getSymbol()
     {
-        
+        return this.symbol;
     }
-    
+    /**
+     * Resets the horse to the beginning of the race so the distance it has travelled becomes zero again and isn't in a fallen state.
+     */
     public void goBackToStart()
     {
-        
+        this.distanceTravelled = 0;
+        this.hasFallen = false;
     }
-    
+    /**
+     * Checks if the horse has fallen or not
+     * @return true if the horse has fallen, false otherwise
+     */
     public boolean hasFallen()
     {
-        
+        return this.hasFallen;
     }
-
+    /**
+     * Increments the distance the horse has travelled by 1
+     */
     public void moveForward()
     {
-        
+        this.distanceTravelled += 1;
     }
-
+    /**
+     * Sets the horse's confidence to the value inputted and ensures that it lies between the valid range of 0 and 1
+     * @param newConfidence The new confidence value to set
+     */
     public void setConfidence(double newConfidence)
     {
-        
+        if (newConfidence < 0) {
+            this.confidence = 0;
+        } else if (newConfidence > 1) {
+            this.confidence = 1;
+        } else{
+            this.confidence = newConfidence;
+        }
     }
-    
+    /**
+     * Sets the horse's symbol to the specified character
+     * @param newSymbol The new symbol to represent the horse
+     */
     public void setSymbol(char newSymbol)
     {
-        
+        this.symbol = newSymbol;
     }
     
 }
