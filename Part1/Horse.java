@@ -1,4 +1,4 @@
-
+package Part1;
 /**
  * This code represents a horse participiating in a horse race.
  * Each and every horse has a name , symbol, confidence rating from 0-1 and is able to track its race progress
@@ -92,10 +92,22 @@ public class Horse
     /**
      * Increments the distance the horse has travelled by 1
      */
-    public void moveForward()
-    {
-        this.distanceTravelled += 1;
+    public void moveForward() {
+        System.out.println("Inside moveForward(): hasFallen = " + hasFallen + ", confidence = " + confidence);
+        if (!hasFallen) {
+            double roll = Math.random();
+            System.out.println("Random roll = " + roll);
+            if (roll < confidence) {
+                distanceTravelled++;
+            } else {
+                fall();
+            }
+        } else {
+            System.out.println("Cannot move. Horse has already fallen.");
+        }
     }
+    
+    
     /**
      * Sets the horse's confidence to the value inputted and ensures that it lies between the valid range of 0 and 1
      * @param newConfidence The new confidence value to set
@@ -118,5 +130,4 @@ public class Horse
     {
         this.symbol = newSymbol;
     }
-    
 }

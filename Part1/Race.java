@@ -1,3 +1,5 @@
+package Part1;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -71,26 +73,25 @@ public class Race
         lane2Horse.goBackToStart();
         lane3Horse.goBackToStart();
                       
-        while (!finished)
-        {
-            //move each horse
+        while (!finished) {
             moveHorse(lane1Horse);
             moveHorse(lane2Horse);
             moveHorse(lane3Horse);
-                        
-            //print the race positions
+            
             printRace();
             
-            //if any of the three horses has won the race is finished
-            if ( raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse) )
-            {
+            if (raceWonBy(lane1Horse) || raceWonBy(lane2Horse) || raceWonBy(lane3Horse)) {
                 finished = true;
             }
-           
-            //wait for 100 milliseconds
-            try{ 
+            // Add this check to end race if all horses fell
+            else if (lane1Horse.hasFallen() && lane2Horse.hasFallen() && lane3Horse.hasFallen()) {
+                System.out.println("All horses fell! Race ended.");
+                finished = true;
+            }
+            
+            try { 
                 TimeUnit.MILLISECONDS.sleep(100);
-            }catch(Exception e){}
+            } catch(Exception e) {}
         }
         Horse winner = null;
         int maxDistance = 0;
@@ -147,7 +148,7 @@ public class Race
      */
     private boolean raceWonBy(Horse theHorse)
     {
-        if (theHorse.getDistanceTravelled() == raceLength)
+        if (theHorse.getDistanceTravelled() >= raceLength)
         {
             return true;
         }
