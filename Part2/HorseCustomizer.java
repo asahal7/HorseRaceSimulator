@@ -1,5 +1,4 @@
-import Part2.RaceGUI;
-import Part2.HorseGUI;
+package Part2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,12 +67,10 @@ public class HorseCustomizer extends JPanel {
         Color color = getColorFromName((String) colorBox.getSelectedItem());
 
         HorseGUI horse = new HorseGUI(name, color, laneCounter);
-        raceGUI.addHorse(horse);
-        laneCounter++; // Move to the next lane for the next horse
+        raceGUI.addHorse(horse); // Add to RaceGUI
+        laneCounter++;
 
         JOptionPane.showMessageDialog(this, "Horse added successfully!");
-
-        // Optional: Clear input fields
         nameField.setText("");
         colorBox.setSelectedIndex(0);
     }
@@ -90,3 +87,8 @@ public class HorseCustomizer extends JPanel {
         };
     }
 }
+
+
+
+
+
