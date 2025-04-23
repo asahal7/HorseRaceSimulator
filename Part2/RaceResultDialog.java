@@ -1,3 +1,6 @@
+
+
+
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
@@ -7,7 +10,6 @@ public class RaceResultDialog extends JDialog {
         super(parent, "Race Results", true);
         setSize(400, 300);
         setLocationRelativeTo(parent);
-
         JTextArea resultArea = new JTextArea();
         resultArea.setEditable(false);
         resultArea.setFont(new Font("Serif", Font.PLAIN, 16));

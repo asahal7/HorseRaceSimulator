@@ -1,3 +1,6 @@
+import Part2.RaceGUI;
+import Part2.HorseGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

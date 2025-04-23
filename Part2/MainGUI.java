@@ -1,3 +1,6 @@
+
+import Part2.RaceGUI;
+
 import javax.swing.*;
 
 public class MainGUI extends JFrame {
