@@ -1,0 +1,72 @@
+import java.awt.*;
+
+public class HorseGUI {
+    private String name;
+    private Color color;
+    private int lane;
+    private int distanceTraveled;
+    private boolean finished;
+
+    private static final int HORSE_WIDTH = 40;
+    private static final int HORSE_HEIGHT = 20;
+    private static final int SPEED = 5; // You can customize speed per horse later
+
+    public HorseGUI(String name, Color color, int lane) {
+        this.name = name;
+        this.color = color;
+        this.lane = lane;
+        this.distanceTraveled = 0;
+        this.finished = false;
+    }
+
+    // Draws the horse as a colored rectangle with its name
+    public void draw(Graphics g) {
+        int x = 50 + distanceTraveled;
+        int y = (lane + 1) * 100; // Adjust lane spacing as needed
+
+        g.setColor(color);
+        g.fillRect(x, y, HORSE_WIDTH, HORSE_HEIGHT);
+
+        g.setColor(Color.BLACK);
+        g.drawString(name, x, y - 5);
+    }
+
+    // Simulates horse movement
+    public void move() {
+        if (!finished) {
+            distanceTraveled += SPEED;
+
+            // Let's say the finish line is at x = 850
+            if (distanceTraveled >= 800) {
+                distanceTraveled = 800;
+                finished = true;
+            }
+        }
+    }
+
+    // Resets the horse to the starting position
+    public void reset() {
+        distanceTraveled = 0;
+        finished = false;
+    }
+
+    public boolean hasFinished() {
+        return finished;
+    }
+
+    public int getDistanceTraveled() {
+        return distanceTraveled;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getLane() {
+        return lane;
+    }
+}
