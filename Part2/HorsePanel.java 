@@ -1,0 +1,17 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class HorsePanel extends JPanel {
+    private HorseGUI horse;
+
+    public HorsePanel(HorseGUI horse) {
+        this.horse = horse;
+        setPreferredSize(new Dimension(100, 50));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        horse.draw(g);
+    }
+}

@@ -1,0 +1,19 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class GUIUtils {
+    public static JPanel wrapWithTitledBorder(JComponent component, String title) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createTitledBorder(title));
+        panel.add(component, BorderLayout.CENTER);
+        return panel;
+    }
+
+    public static void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
