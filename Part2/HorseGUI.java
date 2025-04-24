@@ -1,5 +1,7 @@
 package Part2;
+
 import java.awt.*;
+import java.util.Random;
 
 public class HorseGUI {
     private String name;
@@ -7,10 +9,14 @@ public class HorseGUI {
     private int lane;
     private int distanceTraveled;
     private boolean finished;
+    private int speed;
+    private String emoji;
 
     private static final int HORSE_WIDTH = 40;
     private static final int HORSE_HEIGHT = 20;
-    private static final int SPEED = 5; // You can customize speed per horse later
+
+    private static final String[] EMOJIS = { "🐎", "🐴", "🏇", "🐎💨", "🦄", "🐐" };
+    private static int emojiIndex = 0;
 
     public HorseGUI(String name, Color color, int lane) {
         this.name = name;
@@ -18,26 +24,34 @@ public class HorseGUI {
         this.lane = lane;
         this.distanceTraveled = 0;
         this.finished = false;
+
+        this.speed = new Random().nextInt(3) + 4; // Random speed between 4 and 6
+        this.emoji = getNextEmoji();
     }
 
-    // Draws the horse as a colored rectangle with its name
+    // Assigns a different emoji to each horse
+    private static String getNextEmoji() {
+        String e = EMOJIS[emojiIndex % EMOJIS.length];
+        emojiIndex++;
+        return e;
+    }
+
+    // Draws the horse as an emoji and shows name
     public void draw(Graphics g) {
         int x = 50 + distanceTraveled;
-        int y = (lane + 1) * 100; // Adjust lane spacing as needed
+        int y = (lane + 1) * 100;
 
         g.setColor(color);
-        g.fillRect(x, y, HORSE_WIDTH, HORSE_HEIGHT);
-
-        g.setColor(Color.BLACK);
-        g.drawString(name, x, y - 5);
+        g.setFont(new Font("SansSerif", Font.BOLD, 18));
+        g.drawString(emoji, x, y); // Emoji at position
+        g.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        g.drawString(name, x, y - 10); // Name slightly above emoji
     }
 
-    // Simulates horse movement
+    // Moves horse forward based on its individual speed
     public void move() {
         if (!finished) {
-            distanceTraveled += SPEED;
-
-            // Let's say the finish line is at x = 850
+            distanceTraveled += speed;
             if (distanceTraveled >= 800) {
                 distanceTraveled = 800;
                 finished = true;
@@ -45,7 +59,6 @@ public class HorseGUI {
         }
     }
 
-    // Resets the horse to the starting position
     public void reset() {
         distanceTraveled = 0;
         finished = false;
@@ -70,4 +83,13 @@ public class HorseGUI {
     public int getLane() {
         return lane;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
 }
+
+
+
+
+

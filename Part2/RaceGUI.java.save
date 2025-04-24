@@ -1,0 +1,109 @@
+package Part2;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+/**
+ * Displays the race simulation with animated horses.
+ */
+public class RaceGUI extends JPanel {
+    private final List<Horse> horses;
+    private final JButton startRaceButton;
+    private final Timer raceTimer;
+    private boolean raceInProgress = false;
+
+    public RaceGUI(List<Horse> horses) {
+        this.horses = horses;
+        this.setLayout(new BorderLayout());
+
+        // Start race button
+        startRaceButton = new JButton("Start Race");
+        startRaceButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!raceInProgress) {
+                    startRace();
+                }
+            }
+        });
+
+        // Add start button at the bottom
+        this.add(startRaceButton, BorderLayout.SOUTH);
+
+        // Timer for race animation (updates every 50ms)
+        raceTimer = new Timer(50, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean raceFinished = updateHorsePositions();
+                repaint();
+                if (raceFinished) {
+                    raceTimer.stop();
+                    raceInProgress = false;
+                    showRaceResults();
+                }
+            }
+        });
+    }
+
+    /**
+     * Starts the race by resetting positions and starting the timer.
+     */
+    private void startRace() {
+        for (Horse horse : horses) {
+            horse.resetPosition();
+        }
+        raceInProgress = true;
+        raceTimer.start();
+    }
+
+    /**
+     * Moves horses forward randomly and checks if anyone has won.
+     */
+    private boolean updateHorsePositions() {
+        boolean anyHorseFinished = false;
+        for (Horse horse : horses) {
+            horse.advance(); // move forward randomly
+            if (horse.getXPosition() >= getWidth() - 100) { // finish line check
+                anyHorseFinished = true;
+            }
+        }
+        return anyHorseFinished;
+    }
+
+    /**
+     * Shows a dialog with the race results.
+     */
+    private void showRaceResults() {
+        Horse winner = horses.get(0);
+        for (Horse horse : horses) {
+            if (horse.getXPosition() > winner.getXPosition()) {
+                winner = horse;
+            }
+        }
+        JOptionPane.showMessageDialog(this, "🏆 Winner: " + winner.getName(), "Race Results", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Custom painting of the race and horses.
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        int y = 50;
+        for (Horse horse : horses) {
+            g.setColor(horse.getColor());
+            g.fillRect(horse.getXPosition(), y, 60, 20); // horse body
+            g.setColor(Color.BLACK);
+            g.drawString(horse.getName(), horse.getXPosition(), y - 5); // horse name
+            y += 60;
+        }
+
+        // Draw finish line
+        g.setColor(Color.RED);
+        g.drawLine(getWidth() - 100, 0, getWidth() - 100, getHeight());
+    }
+}
+
