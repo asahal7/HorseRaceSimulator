@@ -1,19 +1,81 @@
-# HorseRaceSimulator
+HorseRaceSimulator
+
 Java coursework for a horse race simulation game.
-Horse Race Simulator
 
 Description
 
-The Horse Race Simulator is an interactive Java application that simulates a horse racing game with customizable horses, interactive track design, betting functionality, and race statistics. Users can customize their horses, place bets on them, and watch as the race progresses. The app also includes a 3-second countdown timer before the race starts and displays race results.
+The Horse Race Simulator is an interactive Java application that simulates a horse racing game with customizable horses, interactive track design, betting functionality, and race statistics.
+
+The application is divided into two parts:
+
+Part 1 (Text-based Simulator): Simulates a horse race in the console.
+Part 2 (Graphical Simulator): Full-featured GUI version with interactive controls and visuals using Java Swing.
 
 Features
 
-Interactive Track Design: Customize the race track layout. Horse Customization: Create unique horses with customized names and stats. Race Simulation: Watch horses race and display the result. Betting System: Place bets on horses and check the outcomes. Statistics and Analytics: View race statistics, including results and earnings. Countdown Timer: A 3-second countdown before the race starts, displayed directly in the GUI. Finish Line: A clear visual representation of the race finish line. Installation Instructions
+Interactive Track Design
+Horse Customization
+Race Simulation
+Betting System
+Statistics and Analytics
+Countdown Timer before the race starts
+Finish Line Display
+Installation and Setup Instructions
 
-Clone the repository: git clone https://github.com/your-username/horse-race-simulator.git Navigate to the project directory: cd horse-race-simulator Open the project in your preferred IDE (e.g., IntelliJ, Eclipse) or use VS Code. Ensure that you have Java installed (JDK 8 or higher). Build and run the project. Usage Instructions
+Prerequisites
 
-Open the MainGUI.java file in your IDE. Run the application to launch the GUI. Use the options to: Customize the track and horses. Place bets on your chosen horses. Start the race and watch the countdown. View the results and statistics. Dependencies
+Java JDK 8 or higher
+No additional libraries required — only core Java (including Java Swing)
+Step-by-Step Setup
 
-Java 8 or higher Java Swing (for GUI) File Structure
+Download or clone the project: git clone https://github.com/<your-username>/HorseRaceSimulator.git
+Or unzip the provided .zip file.
+Navigate to the project folder: cd HorseRaceSimulator
+How to Compile and Run
 
-BettingPanel.java: Manages the betting interface and logic. GUIUtils.java: Helper methods for GUI components. HorseCustomizer.java: Allows customization of horse attributes. HorseGUI.java: Displays horse details and stats. HorsePanel.java: Contains the visual representation of the horses. MainGUI.java: The main graphical user interface (GUI). RaceGUI.java: Displays the race simulation. RaceResultDialog.java: Shows the race result dialog. StatisticsPanel.java: Displays race statistics. TrackCustomizer.java: Allows customization of the race track. TrackPanel.java: Displays the race track.
+You can use an IDE (like IntelliJ, Eclipse, or VS Code) or the command line.
+
+Part 1: Text-Based Simulator
+Compile:
+javac Part1/*.java
+Run:
+java Part1.Main
+
+(Main.java should call the startRace() method.)
+
+Part 2: Graphical Simulator (GUI)
+Compile:
+javac Part2/*.java
+Run:
+java Part2.MainGUI
+
+(MainGUI.java should call the startRaceGUI() method.)
+
+Methods of Interest
+
+startRace() — Used in Part 1 to start the console-based race.
+startRaceGUI() — Used in Part 2 to start the GUI-based race.
+These methods should be invoked from Main.java and MainGUI.java respectively.
+
+File Structure Overview (Part2 folder unless stated otherwise)
+
+BettingPanel.java — Betting interface and logic
+GUIUtils.java — Utility/helper methods for GUI
+HorseCustomizer.java — Customize horse attributes
+HorseGUI.java — Display horse details and stats
+HorsePanel.java — Visual representation of horses
+MainGUI.java — Entry point for the GUI
+RaceGUI.java — Race animation logic
+RaceResultDialog.java — Displays results
+StatisticsPanel.java — Race statistics
+TrackCustomizer.java — Customize the race track
+TrackPanel.java — Displays race track
+Troubleshooting
+
+Make sure Java is installed:
+java -version
+If using the command line, compile and run from the root HorseRaceSimulator directory.
+If using an IDE, set Main.java or MainGUI.java as the main class.
+No external tools or dependencies are needed. The program runs using standard Java.
+
+
